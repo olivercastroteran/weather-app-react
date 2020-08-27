@@ -3,6 +3,7 @@ import './App.css';
 import Weather from './components/weather.component';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'weather-icons/css/weather-icons.css';
+import Form from './components/form.component';
 
 const Api_Key = '429736441cf3572838aa10530929f7cd';
 
@@ -91,6 +92,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Form />
         <Weather
           city={this.state.city}
           country={this.state.country}
