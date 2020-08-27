@@ -9,9 +9,15 @@ form input[name='country'] {
   border: 0;
   border-bottom: 2px solid whitesmoke;
   border-radius: 0;
+  margin-bottom: 0.5rem;
 }
 
 form input:focus {
-  background-color: transparent;
+  background-color: transparent !important;
   box-shadow: none !important;
+  color: #fff !important;
+}
+
+form button {
+  margin-top: 1rem;
 }
