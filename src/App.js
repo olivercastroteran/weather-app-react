@@ -9,10 +9,25 @@ const Api_Key = '429736441cf3572838aa10530929f7cd';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      city: undefined,
+      country: undefined,
+      icon: undefined,
+      main: undefined,
+      temp_celsius: undefined,
+      temp_max: null,
+      temp_min: null,
+      description: '',
+      error: false,
+    };
 
     this.getWeather();
   }
+
+  calCelsius = (temp) => {
+    let cel = (temp - 273.15).toFixed(2);
+    return cel;
+  };
 
   getWeather = async (e) => {
     let city = 'London';
@@ -24,12 +39,28 @@ class App extends React.Component {
     const response = await api_call.json();
 
     console.log(response);
+
+    this.setState({
+      city: response.name,
+      country: response.sys.country,
+      temp_celsius: this.calCelsius(response.main.temp),
+      temp_max: this.calCelsius(response.main.temp_max),
+      temp_min: this.calCelsius(response.main.temp_min),
+      description: response.weather[0].description,
+    });
   };
 
   render() {
     return (
       <div className="App">
-        <Weather />
+        <Weather
+          city={this.state.city}
+          country={this.state.country}
+          temp_celsius={this.state.temp_celsius}
+          temp_max={this.state.temp_max}
+          temp_min={this.state.temp_min}
+          description={this.state.description}
+        />
       </div>
     );
   }
